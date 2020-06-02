@@ -1,0 +1,23 @@
+[
+    {
+        "userId": 1,
+        "userEmail": "allan@email.se"
+    },
+    {
+        "userId": 2,
+        "userEmail": "bettan@email.se"
+    },
+    {
+        "userId": 3,
+        "userEmail": "calle@email.se"
+    },
+    {
+        "userId": 4,
+        "userEmail": "danne@email.se"
+    },
+    {
+        "userId": 5,
+        "userEmail": "emma@email.se"
+    }
+  ]
+ 
