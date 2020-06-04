@@ -1,8 +1,7 @@
 [
-    {
-        "id": 1,
-        "adminName": "test",
-        "adminPassword": "1234"
-    }
- ]
- 
+  {
+    "id": 1,
+    "adminName": "test",
+    "adminPassword": "1234"
+  }
+]

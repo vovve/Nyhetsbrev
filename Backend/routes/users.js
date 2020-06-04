@@ -1,61 +1,84 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
-var fs = require('fs');
+var fs = require("fs");
 
 // GET users list.
-router.get('/', function(req, res, next) {
+router.get("/", function (req, res, next) {
   var users;
-  fs.readFile("Users.json", (err, data) =>{
+  fs.readFile("users.json", (err, data) => {
     if (err) throw err;
     users = JSON.parse(data);
     console.log(users);
-  })
+  });
   res.send(users);
- });
-  
- // GET allusers list.
- router.get('/allusers', function(req, res, next) {
+});
+
+// Check userlogin
+router.post("/tryUser", function (req, res, next) {
   var users;
-  fs.readFile("users.json", (err, data) =>{
+  fs.readFile("users.json", (err, data) => {
     if (err) throw err;
+    var loginResult = "Testar att logga in: ";
     users = JSON.parse(data);
-    console.log(users);
-  })
-  res.send(users);
- });
-  
- // GET admin list.
- router.get('/admin', function(req, res, next) {
-  var admin;
-  fs.readFile("admin.json", (err, data) =>{
-    if (err) throw err;
-    admin = JSON.parse(data);
-    console.log(admin);
-  })
-  res.send(admin);
- });
-  
- router.post('/login', function(req, res, next){
-  console.log(req.body);
-   var tryAdmin = req.body;
-  console.log("Try Admin ", tryAdmin.name);
-   //var currentAdmins;
-  fs.readFile("admin.json", (err, data) =>{
-    var loginResult = "Testal logga in: "
-    if (err) throw err;
-    var admin = JSON.parse(data);
-    console.log("admin ", admin);
-    var findadmin = admin.filter(a => a.name == req.body.name);
-    console.log("findadmin ", findadmin);
-   
-    console.log(findadmin[0].password);
+    console.log("users ", users);
+    var finduser = users.filter((a) => a.name == req.body.name);
+    console.log("finduser ", finduser);
+    console.log(finduser[0].password);
     console.log(req.body.password);
-   
-    if(findadmin[0].password == req.body.password){
+
+    if (finduser[0].password == req.body.password) {
       console.log("Lösenordet stämmer");
       loginResult += "success";
+    } else {
+      Response.sendStatus(404);
+    }
+  });
+});
+
+// Save new user registration
+router.post("/newUser", function (req, res, next) {
+  var users;
+  var newUser;
+  fs.readFile("users.json", (err, data) => {
+    if (err) throw err;
+    users = JSON.parse(data);
+    newUser = {
+      id: req.body.id,
+      userName: req.body.userName,
+      userEmail: req.body.userEmail,
+      userPassword: req.body.userPassword,
+      isSubscribing: req.body.isSubscribing,
     };
-  }) 
- })
- 
+    console.log(newUser);
+    // Save registration to JSON file
+    userPassword.push(newUser);
+    var saveUsers = JSON.stringify(users, null, 2);
+    fs.writeFile("users.json", saveUsers, (err, data) => {
+      if (err) throw err;
+    });
+    res.send("Registrerad", newUser);
+  });
+});
+
+// Check if user wants to subscribe
+router.put("/:userId", function (req, res) {
+  var userId = req.params.userId;
+  console.log(userId);
+  fs.readFile("users.json", (err, data) => {
+    if (err) throw err;
+    users = JSON.parse(data);
+    var userChangeSubscription = users.filter((a) => a.id == req.body.userId);
+    console.log(userChangeSubscription);
+    userChangeSubscription.isSubscribing = req.body.isSubscribing;
+
+    var saveUsers = JSON.stringify(users, null, 2);
+    fs.writeFile("users.json", saveUsers, (err, data) => {
+      if (err) throw err;
+    });
+
+    console.log(userChangeSubscription);
+    res.send("Du har ändrat din prenumeration på nyhetsbrevet");
+  });
+});
+
 module.exports = router;

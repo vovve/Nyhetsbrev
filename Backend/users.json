@@ -1,29 +1,37 @@
 [
-    {
-        "Id": 1,
-        "userName": "Allan All",
-        "userPassword": "1111"
-    },
-    {
-        "Id": 2,
-        "userName": "Bettan Bett",
-        "userPassword": "2222"
-    },
-    {
-        "Id": 3,
-        "userName": "Calle Call",
-        "userPassword": "3333"
-    },
-    {
-        "Id": 4,
-        "userName": "Danne Dann",
-        "userPassword": "4444"
-    },
-    {
-        "Id": 5,
-        "userName": "Emma Emm",
-        "userPassword": "5555"
-    }
-  
- ]
- 
+  {
+    "Id": 1,
+    "userName": "Allan All",
+    "userEmail": "allan@email.se",
+    "userPassword": "1111",
+    "isSubscribing": true
+  },
+  {
+    "Id": 2,
+    "userName": "Bettan Bett",
+    "userEmail": "bettan@email.se",
+    "userPassword": "2222",
+    "isSubscribing": true
+  },
+  {
+    "Id": 3,
+    "userName": "Calle Call",
+    "userEmail": "calle@email.se",
+    "userPassword": "3333",
+    "isSubscribing": true
+  },
+  {
+    "Id": 4,
+    "userName": "Danne Dann",
+    "userEmail": "danne@email.se",
+    "userPassword": "4444",
+    "isSubscribing": true
+  },
+  {
+    "Id": 5,
+    "userName": "Emma Emm",
+    "userEmail": "emma@email.se",
+    "userPassword": "5555",
+    "isSubscribing": false
+  }
+]
