@@ -5,18 +5,19 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { value: "" };
+    this.state = { namn: "", emailadress: "", password: "" };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleChange = (event) => {
-    this.setState({ value: event.target.value });
+    console.log("handleChange", event.target.name);
+    this.setState({ [event.target.name]: event.target.value });
   };
   handleSubmit = (event) => {
     this.props.getNewLogin(this.state.value);
     event.preventDefault();
   };
   render() {
-    // const Login = this.props.showLogin;
-
     return (
       <div className="Loginbox">
         <h4>Välkommen!</h4>
@@ -25,6 +26,7 @@ class Login extends React.Component {
             Namn:{" "}
             <input
               type="namn"
+              name="namn"
               value={this.state.value}
               onChange={this.handleChange}
             />
@@ -32,6 +34,7 @@ class Login extends React.Component {
             Email:{" "}
             <input
               type="email"
+              name="emailadress"
               value={this.state.value}
               onChange={this.handleChange}
             />
@@ -39,6 +42,7 @@ class Login extends React.Component {
             Lösenord:{" "}
             <input
               type="password"
+              name="password"
               value={this.state.value}
               onChange={this.handleChange}
             />
