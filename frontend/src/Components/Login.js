@@ -1,19 +1,16 @@
 import React from "react";
-import "./App.css";
-import Checkbox from "./Checkbox";
 
-class UserRegistration extends React.Component {
+class Login extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      userId: "",
       userName: "",
-      userEmail: "",
       userPassword: "",
-      isSubscribing: false,
     };
-    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(event) {
@@ -21,23 +18,16 @@ class UserRegistration extends React.Component {
   }
 
   handleSubmit(event) {
-    this.props.userRegistration(
-      this.state.userName,
-      this.state.userEmail,
-      this.state.userPassword,
-      this.state.isSubscribing
-    );
+    this.props.checkUser(this.state.userName, this.state.userPassword);
     event.preventDefault();
   }
 
-  UserRegistration = (userName, userEmail, userPassword, isSubscribing) => {
+  checkUser = (userName, userPassword) => {
     var data = {
       userName: userName,
-      userEmail: userEmail,
       userPassword: userPassword,
-      isSubscribing: isSubscribing,
     };
-    fetch("http://localhost:3000/userRegistration", {
+    fetch("http://localhost:3000/userLogin", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -48,13 +38,7 @@ class UserRegistration extends React.Component {
       .then((data) => {
         console
           .log(data)
-          .this.setState({
-            userId: data.userId,
-            userName: data.userName,
-            userEmail: data.userEmail,
-            userPassword: data.userPassword,
-            isSubscribing: data.isSubscribing,
-          })
+          .this.setState(data.userId)
           .this.props.userLoggingin(data.userId);
       })
       .catch((err) => {
@@ -65,21 +49,14 @@ class UserRegistration extends React.Component {
   render() {
     return (
       <div className="Loginbox">
-        <h3>Registrera dig här för att få nyhetsbrevet</h3>
+        <h2>Välkommen!</h2>
+        <p>Logga in med dina användaruppgifter</p>
         <form onSubmit={this.handleSubmit}>
           <label>
             Namn:{" "}
             <input
               type="text"
               name="userName"
-              value={this.state.value}
-              onChange={this.handleChange}
-            />
-            <br />
-            Email:{" "}
-            <input
-              type="email"
-              name="userEmail"
               value={this.state.value}
               onChange={this.handleChange}
             />
@@ -92,17 +69,15 @@ class UserRegistration extends React.Component {
               onChange={this.handleChange}
             />
             <br />
+            <br />
           </label>
+          <input type="submit" value="Logga in" />
+          <br />
+          <br />
         </form>
-        <Checkbox
-          isSubscribing={this.state.isSubscribing}
-          changeisSubscribing={this.changeisSubscribing}
-        />
-        <input type="submit" value="Registrera" />
-        <br />
       </div>
     );
   }
 }
 
-export default UserRegistration;
+export default Login;

@@ -1,6 +1,6 @@
 import React from "react";
-import Login from "./Login";
-import UserRegistration from "./UserRegistration";
+import Login from "./Components/Login";
+import UserRegistration from "./Components/UserRegistration";
 
 import "./App.css";
 
