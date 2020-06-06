@@ -8,6 +8,8 @@ var logger = require("morgan");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
+var userRegistrationRouter = require("./routes/userRegistration");
+var userLoginRouter = require("./routes/userLogin");
 var emailadressesRouter = require("./routes/emailadresses");
 var adminRouter = require("./routes/admin");
 
@@ -21,6 +23,8 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+app.use("/userRegistration", userRegistrationRouter);
+app.use("/userLogin", userLoginRouter);
 app.use("/emailadresses", emailadressesRouter);
 app.use("/admin", adminRouter);
 

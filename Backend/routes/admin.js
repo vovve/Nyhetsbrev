@@ -11,7 +11,8 @@ router.post("/", (req, res) => {
     html += "<body>";
     html += "<h1>Välkommen admin</h1>";
     html += '<a href="/users">Visa alla registrerade användare</a><br/>';
-    html += '<a href="/emailadresses">Visa alla Email adresser</a>';
+    html +=
+      '<a href="/emailadresses">Visa alla prenumererande email adresser</a>';
     html += "</body>";
     res.send(html);
   } else {
