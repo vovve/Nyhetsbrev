@@ -26,7 +26,7 @@ class App extends React.Component {
     console.log("Vi har anropat callback", userId);
   };
 
-  changeisSubscribing = () => {
+  changeSubscription = () => {
     this.setState({ isSubscribing: true });
   };
 
@@ -42,7 +42,10 @@ class App extends React.Component {
             />
             <br />
             <br />
-            <UserRegistration newuserLoggingin={this.newuserLogginginId} />
+            <UserRegistration
+              newuserLoggingin={this.newuserLogginginId}
+              changeStatus={this.changeSubscription}
+            />
           </div>
         </header>
       </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import Checkbox from "./Checkbox";
+import Checkbox from "./Subscribe";
 
 class UserRegistration extends React.Component {
   constructor(props) {
@@ -95,7 +95,7 @@ class UserRegistration extends React.Component {
         </form>
         <Checkbox
           isSubscribing={this.state.isSubscribing}
-          changeisSubscribing={this.changeisSubscribing}
+          //changeisSubscribing={this.changeisSubscribing}
         />
         <input type="submit" value="Registrera" />
         <br />
