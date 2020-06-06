@@ -15,10 +15,11 @@
   flex-direction: column;
   font-size: calc(10px + 2vmin);
   color: black;
+  justify-content: space-around;
 }
 
 .Loginbox {
-  height: 250px;
+  height: 300px;
   width: 400px;
   background-color: white;
   border-radius: 10px;
