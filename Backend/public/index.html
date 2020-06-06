@@ -5,7 +5,12 @@
   </head>
 
   <body>
-    <h1>Välkommen till nyhetsbrevet</h1>
-    <button>Här kan du logga in som administratör</button>
+    <h1>Välkommen till nyhetsbrevet, backend</h1>
+    <h3>Här kan du logga in som administratör</h3>
+    <form action="/admin" method="POST">
+      Användarnamn: <input type="text" name="adminUsername" /> <br />
+      Lösenord: <input type="password" name="adminPassword" /> <br />
+      <input type="submit" value="Logga in" />
+    </form>
   </body>
 </html>

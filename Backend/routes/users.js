@@ -4,13 +4,11 @@ var fs = require("fs");
 
 // GET users list.
 router.get("/", function (req, res, next) {
-  var users;
   fs.readFile("users.json", (err, data) => {
     if (err) throw err;
-    users = JSON.parse(data);
-    console.log(users);
+    var users = JSON.parse(data);
+    res.send(users);
   });
-  res.send(users);
 });
 
 // Check userlogin
@@ -21,7 +19,7 @@ router.post("/tryUser", function (req, res, next) {
     var loginResult = "Testar att logga in: ";
     users = JSON.parse(data);
     console.log("users ", users);
-    var finduser = users.filter((a) => a.name == req.body.name);
+    var finduser = users.find((a) => a.name == req.body.name);
     console.log("finduser ", finduser);
     console.log(finduser[0].password);
     console.log(req.body.password);
