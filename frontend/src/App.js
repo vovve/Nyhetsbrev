@@ -1,6 +1,6 @@
 import React from "react";
 import Login from "./Login";
-import Checkbox from "./Checkbox";
+import UserRegistration from "./UserRegistration";
 
 import "./App.css";
 
@@ -9,13 +9,19 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      startMessage: "",
+      startMessage: "Välkommen!",
       userLoggingin: "",
+      newuserLoggingin: "",
       isSubscribing: false,
     };
   }
 
   userLoggingin = (userId) => {
+    this.setState({ userLoggingin: userId });
+    console.log("Vi har anropat callback", userId);
+  };
+
+  newuserLoggingin = (userId) => {
     this.setState({ userLoggingin: userId });
     console.log("Vi har anropat callback", userId);
   };
@@ -29,18 +35,15 @@ class App extends React.Component {
       <div className="App">
         <header className="App-header">
           <h1>Nyhetsbrevet</h1>
-
           <div>
             <Login
-              startMessage={this.state.ShowLogin}
+              startMessage={this.state.startMessage}
               userLoggingin={this.userLogginginId}
             />
+            <br />
+            <br />
+            <UserRegistration newuserLoggingin={this.newuserLogginginId} />
           </div>
-          <br />
-          <Checkbox
-            isSubscribing={this.state.isSubscribing}
-            changeisSubscribing={this.changeisSubscribing}
-          />
         </header>
       </div>
     );

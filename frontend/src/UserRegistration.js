@@ -1,14 +1,16 @@
 import React from "react";
 import "./App.css";
+import Checkbox from "./Checkbox";
 
-class Login extends React.Component {
+class UserRegistration extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      userId: "",
       userName: "",
+      userEmail: "",
       userPassword: "",
+      isSubscribing: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -19,16 +21,23 @@ class Login extends React.Component {
   }
 
   handleSubmit(event) {
-    this.props.checkUser(this.state.userName, this.state.userPassword);
+    this.props.userRegistration(
+      this.state.userName,
+      this.state.userEmail,
+      this.state.userPassword,
+      this.state.isSubscribing
+    );
     event.preventDefault();
   }
 
-  checkUser = (userName, userPassword) => {
+  UserRegistration = (userName, userEmail, userPassword, isSubscribing) => {
     var data = {
       userName: userName,
+      userEmail: userEmail,
       userPassword: userPassword,
+      isSubscribing: isSubscribing,
     };
-    fetch("http://localhost:3000/userLogin", {
+    fetch("http://localhost:3000/userRegistration", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -39,7 +48,13 @@ class Login extends React.Component {
       .then((data) => {
         console
           .log(data)
-          .this.setState(data.userId)
+          .this.setState({
+            userId: data.userId,
+            userName: data.userName,
+            userEmail: data.userEmail,
+            userPassword: data.userPassword,
+            isSubscribing: data.isSubscribing,
+          })
           .this.props.userLoggingin(data.userId);
       })
       .catch((err) => {
@@ -50,14 +65,21 @@ class Login extends React.Component {
   render() {
     return (
       <div className="Loginbox">
-        <h2>Välkommen!</h2>
-        <p>Logga in med dina användaruppgifter</p>
+        <h3>Registrera dig här för att få nyhetsbrevet</h3>
         <form onSubmit={this.handleSubmit}>
           <label>
             Namn:{" "}
             <input
               type="text"
               name="userName"
+              value={this.state.value}
+              onChange={this.handleChange}
+            />
+            <br />
+            Email:{" "}
+            <input
+              type="email"
+              name="userEmail"
               value={this.state.value}
               onChange={this.handleChange}
             />
@@ -70,15 +92,17 @@ class Login extends React.Component {
               onChange={this.handleChange}
             />
             <br />
-            <br />
           </label>
-          <input type="submit" value="Logga in" />
-          <br />
-          <br />
         </form>
+        <Checkbox
+          isSubscribing={this.state.isSubscribing}
+          changeisSubscribing={this.changeisSubscribing}
+        />
+        <input type="submit" value="Registrera" />
+        <br />
       </div>
     );
   }
 }
 
-export default Login;
+export default UserRegistration;
