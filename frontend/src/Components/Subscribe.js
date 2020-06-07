@@ -12,18 +12,16 @@ class Subscribe extends React.Component {
     event.preventDefault();
     this.setState(
       { isSubscribing: this.state.isSubscribing ? false : true },
-      () => {
-        this.props.changeStatus(this.state.isSubscribing);
-      }
+      () => this.props.changeisSubscribing(this.state.isSubscribing)
     );
   };
 
-  changeState = (isSubscribing, userId) => {
+  changeStatus = (isSubscribing, userId) => {
     var data = { "isSubscribing:": isSubscribing };
 
     fetch("http://localhost:3000/users/" + userId, {
       method: "PUT",
-      headers: {},
+      headers: { "Content-type": "application/json" },
       body: JSON.stringify(data),
     }).catch((err) => {
       console.log(err);

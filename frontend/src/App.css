@@ -19,6 +19,16 @@
 }
 
 .Loginbox {
+  height: 200px;
+  width: 400px;
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.Registerbox {
   height: 300px;
   width: 400px;
   background-color: white;
