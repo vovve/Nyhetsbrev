@@ -7,13 +7,12 @@ router.post("/", function (req, res, next) {
   fs.readFile("./users.json", (err, data) => {
     if (err) throw err;
     var users = JSON.parse(data);
-    var newUserId = number(users.length + 1);
+    let newUserId = Number(users.length + 1);
     var newUser = {
       id: newUserId,
       userName: req.body.userName,
       userEmail: req.body.userEmail,
       userPassword: req.body.userPassword,
-      isSubscribing: req.body.isSubscribing,
     };
     console.log(newUser);
     // Save registration to JSON file

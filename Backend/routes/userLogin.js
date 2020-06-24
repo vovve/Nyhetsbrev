@@ -11,7 +11,7 @@ router.post("/", function (req, res, next) {
 
     var users = JSON.parse(data);
 
-    var userLoggingin = users.find((a) => a.name == req.body.name);
+    userLoggingin = users.find((a) => a.name == req.body.name);
     // console.log("finduser ", finduser);
     // console.log(finduser[0].password);
     // console.log(req.body.password);

@@ -1,6 +1,6 @@
 import React from "react";
-import Login from "./Components/Login";
-import UserRegistration from "./Components/UserRegistration";
+import Login from "./Login";
+import UserRegistration from "./UserRegistration";
 
 import "./App.css";
 
@@ -8,45 +8,63 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      startMessage: "Välkommen!",
-      userLoggingin: "",
-      newuserLoggingin: "",
-      isSubscribing: false,
+    this.state = { 
+      showText: "",
+      isLoggedIn: false
     };
   }
 
-  userLoggingin = (userId) => {
-    this.setState({ userLoggingin: userId });
-    console.log("Vi har anropat callback", userId);
+  UserRegistration = (userName, userEmail, userPassword) => {
+    var data = {
+      userName: userName,
+      userEmail: userEmail,
+      userPassword: userPassword
+    };
+
+    fetch("http://localhost:3000/userRegistration", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
-  newuserLoggingin = (userId) => {
-    this.setState({ userLoggingin: userId });
-    console.log("Vi har anropat callback", userId);
-  };
+    isLoggedIn = () => {
+      this.setState({ isLoggedIn: true });
+    }
 
-  changeisSubscribing = () => {
-    this.setState({ isSubscribing: true });
-  };
+    isLoggedOut = () => {
+      this.setState({ isLoggedIn: false });
+    }
 
   render() {
     return (
+      this.state.isLoggedIn ?
       <div className="App">
         <header className="App-header">
           <h1>Nyhetsbrevet</h1>
-          <div>
-            <Login
-              startMessage={this.state.startMessage}
-              userLoggingin={this.userLogginginId}
+            <div>
+            <Login 
+            ChangeisSubscribingStatus = {this.changeisSubscribingStatus} 
+            isLoggedOut={this.isloggedOut}
             />
-            <br />
-            <br />
-            <UserRegistration
-              newuserLoggingin={this.newuserLogginginId}
-              changeStatus={this.changeisSubscribing}
+            </div>
+        </header>
+      </div>
+            :
+            <div className="App">
+            <header className="App-header">
+              <h1>Nyhetsbrevet</h1>
+                <div>
+            <UserRegistration 
+            UserRegistration={this.UserRegistration} 
+            isLoggedIn = {this.props.isloggedIn}
             />
-          </div>
+           </div>
         </header>
       </div>
     );

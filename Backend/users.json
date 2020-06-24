@@ -33,5 +33,29 @@
     "userEmail": "emma@email.se",
     "userPassword": "5555",
     "isSubscribing": false
+  },
+  {
+    "id": 5,
+    "userName": "Fabbe Fabb",
+    "userEmail": "fabbe@email.se",
+    "userPassword": "6666"
+  },
+  {
+    "id": 6,
+    "userName": "Gunnar Gunn",
+    "userEmail": "gunnar@email.se",
+    "userPassword": "7777"
+  },
+  {
+    "id": 7,
+    "userName": "Helen Hel",
+    "userEmail": "helen@email.se",
+    "userPassword": "8888"
+  },
+  {
+    "id": 9,
+    "userName": "Inga Ing",
+    "userEmail": "Inga@email.se",
+    "userPassword": "9999"
   }
 ]
