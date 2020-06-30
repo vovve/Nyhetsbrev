@@ -1,30 +1,52 @@
 import React from "react";
 
-class UserRegistration extends React.Component {
+export default class UserRegistration extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {userName: "", userEmail: "", userPassword: "", isSubscribing: false};
+    this.state = {
+      userName: "",
+      userEmail: "",
+      userPassword: "",
+      isSubscribing: false,
+    };
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);  
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
-  
+
+  handleChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+
   handleSubmit(event) {
     console.log("Tryckte på registrera knappen");
-    this.props.UserRegistration(
-      this.state.userName,
-      this.state.userEmail,
-      this.state.userPassword,
-      );
-      event.preventDefault();
-    }
+    event.preventDefault();
 
-  handleChange(event) {
-    const name = event.target.name;
-  
-      this.setState({
-          [name]: event.target.value
+    const { userName, userEmail, userPassword } = this.state;
+
+    fetch("http://localhost:3000/userRegistration", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        userName: userName,
+        userEmail: userEmail,
+        userPassword: userPassword,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data) {
+          localStorage.setItem("userName", userName);
+          console.log(localStorage);
+          this.setState({ isLoggedIn: true });
+          console.log(this.state);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
       });
-    }
+  }
 
   render() {
     //const showText = this.props.showText;
@@ -32,44 +54,34 @@ class UserRegistration extends React.Component {
       <div className="Loginbox">
         <h3>Registrera dig här</h3>
         <form onSubmit={this.handleSubmit}>
-          <label>
-            Namn:
-            <input
-              type="text"
-              name="userName"
-              value={this.state.userName}
-              onChange={this.handleChange}
-            />
-            </label>
-            <br />
-            <label>
-            Email:
-            <input
-              type="email"
-              name="userEmail"
-              value={this.state.userEmail}
-              onChange={this.handleChange}
-            />
-            </label>
-            <br />
-            <label>
-            Lösenord:
-            <input
-              type="password"
-              name="userPassword"
-              value={this.state.userPassword}
-              onChange={this.handleChange}
-            />
-            </label>
-            <br />
-          <input type="submit" value="Registrera"/>
+          Namn:
+          <input
+            type="text"
+            name="userName"
+            value={this.state.userName}
+            onChange={this.handleChange}
+          />
+          <br />
+          Email:
+          <input
+            type="email"
+            name="userEmail"
+            value={this.state.userEmail}
+            onChange={this.handleChange}
+          />
+          <br />
+          Lösenord:
+          <input
+            type="password"
+            name="userPassword"
+            value={this.state.userPassword}
+            onChange={this.handleChange}
+          />
+          <br />
+          <br />
+          <input type="submit" value="Registrera" />
         </form>
-        <br />
-        <br />
-        <br />
       </div>
     );
   }
 }
-
-export default UserRegistration;

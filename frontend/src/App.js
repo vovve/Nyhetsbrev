@@ -1,74 +1,63 @@
 import React from "react";
 import Login from "./Login";
 import UserRegistration from "./UserRegistration";
-
+import StartPage from "./StartPage";
 import "./App.css";
 
-class App extends React.Component {
+export default class App extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = { 
-      showText: "",
-      isLoggedIn: false
+    this.state = {
+      userId: "",
+      userName: "",
+      isLoggedIn: false,
+      isSubscribing: false,
     };
   }
 
-  UserRegistration = (userName, userEmail, userPassword) => {
-    var data = {
-      userName: userName,
-      userEmail: userEmail,
-      userPassword: userPassword
-    };
-
-    fetch("http://localhost:3000/userRegistration", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .catch((err) => {
-        console.log(err);
-      });
+  handleChange = (event) => {
+    event.preventDefault();
+    this.setState(
+      { isSubscribing: this.state.isSubscribing ? false : true },
+      () => this.props.changeisSubscribing(this.state.isSubscribing)
+    );
   };
 
-    isLoggedIn = () => {
-      this.setState({ isLoggedIn: true });
-    }
+  isLoggedIn = () => {
+    this.setState({ isLoggedIn: true });
+  };
 
-    isLoggedOut = () => {
-      this.setState({ isLoggedIn: false });
-    }
+  isLoggedOut = () => {
+    this.setState({ isLoggedIn: false });
+  };
 
   render() {
-    return (
-      this.state.isLoggedIn ?
-      <div className="App">
-        <header className="App-header">
-          <h1>Nyhetsbrevet</h1>
-            <div>
-            <Login 
-            ChangeisSubscribingStatus = {this.changeisSubscribingStatus} 
-            isLoggedOut={this.isloggedOut}
+    if (this.state.isLoggedIn === true)
+      return (
+        <div className="App">
+          <header className="App-header">
+            <h1>Nyhetsbrevet</h1>
+            <StartPage
+              ChangeisSubscribingStatus={this.state.isSubscribing}
+              isLoggedOut={this.isloggedOut}
             />
-            </div>
-        </header>
-      </div>
-            :
-            <div className="App">
-            <header className="App-header">
-              <h1>Nyhetsbrevet</h1>
-                <div>
-            <UserRegistration 
-            UserRegistration={this.UserRegistration} 
-            isLoggedIn = {this.props.isloggedIn}
+          </header>
+        </div>
+      );
+    else {
+      return (
+        <div className="App">
+          <header className="App-header">
+            <h1>Nyhetsbrevet</h1>
+            <Login isLoggedIn={this.isloggedIn} />
+            <br />
+            <UserRegistration
+              UserRegistration={this.UserRegistration}
+              isLoggedIn={this.isloggedIn}
             />
-           </div>
-        </header>
-      </div>
-    );
+          </header>
+        </div>
+      );
+    }
   }
 }
-
-export default App;

@@ -4,27 +4,26 @@ var fs = require("fs");
 
 // Check userlogin
 router.post("/", function (req, res, next) {
-  var userLoggingin = req.body;
+  var users = req.body;
 
   fs.readFile("users.json", (err, data) => {
     if (err) throw err;
+    let users = JSON.parse(data);
 
-    var users = JSON.parse(data);
+    users.forEach(user => {
 
-    userLoggingin = users.find((a) => a.name == req.body.name);
-    // console.log("finduser ", finduser);
-    // console.log(finduser[0].password);
-    // console.log(req.body.password);
-
-    if (userLoggingin[0].password == req.body.password) {
-      var html = "";
-      html += "<body>";
-      html += "<h1>Välkommen till nyhetsbrevet!</h1>";
-      html += "</body>";
-      res.send(html);
-    } else {
-      res.redirect("/");
-    }
+      console.log(user.userName, user.userPassword);
+      if (req.body.userName == user.userName && req.body.userPassword == user.userPassword) {
+        console.log(user);
+        res.send(
+          user= { 
+            id: user.id,
+            userName: user.userName,
+            email: user.email,
+            // wantsNewsletter: user.wantsNewsletter
+          });
+      }
+    });
   });
 });
 
