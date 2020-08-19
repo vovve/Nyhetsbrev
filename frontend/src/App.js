@@ -8,9 +8,9 @@ import Logout from "./Logout";
 export default class App extends React.Component {
  constructor(props) {
    super(props);
-   const user = localStorage.getItem("user");
+   //const user = localStorage.getItem("user");
    this.state = {
-     user: user,
+     userId: null,
      isSubscribing: null,
    };
  }
@@ -21,13 +21,13 @@ export default class App extends React.Component {
    localStorage.setItem("user", userId);
  }
  
- isLoggedIn = (userId) => {
-   console.log("callback login", userId);
-   this.setState({ isLoggedIn: true });
+ isLoggedIn = (userId, isSubscribing) => {
+   console.log("callback login", userId, isSubscribing);
+   this.setState({ userId: userId, isSubscribing: isSubscribing, isLoggedIn: true });
  };
  
- isLoggedOut = (userId) => {
-   console.log("callback logout", userId);
+ isLoggedOut = () => {
+   console.log("callback logout");
    this.setState({ isLoggedIn: false });
    localStorage.removeItem("user")
  };
@@ -38,7 +38,7 @@ export default class App extends React.Component {
        <div className="App">
          <header className="App-header">
            <h1>Nyhetsbrevet</h1>
-           <StartPage ChangeisSubscribingStatus={this.isSubscribing} />
+           <StartPage userId={this.state.userId} isSubscribing={this.state.isSubscribing} ChangeisSubscribingStatus={this.isSubscribing} />
            <Logout isLoggedOut={this.isLoggedOut} />
          </header>
        </div>

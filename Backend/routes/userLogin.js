@@ -17,9 +17,10 @@ router.post("/", function (req, res, next) {
         console.log(user);
         res.send(
           user= { 
-            id: user.id,
+            userId: user.userId,
             userName: user.userName,
             email: user.email,
+            isSubscribing: user.isSubscribing
             // wantsNewsletter: user.wantsNewsletter
           });
       }

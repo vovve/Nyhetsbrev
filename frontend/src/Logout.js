@@ -9,6 +9,7 @@ export default class Logout extends React.Component {
    handleSubmit = (event) => {
        event.preventDefault();
        console.log("loggar ut")
+       //this.props.isLoggedOut
    }
  
    render(){

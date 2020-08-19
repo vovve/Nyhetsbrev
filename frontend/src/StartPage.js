@@ -4,7 +4,7 @@ export default class StartPage extends React.Component {
  constructor(props) {
    super(props);
  
-   this.state = { isSubscribing: this.props.isSubscribing };
+   this.state = { isSubscribing: this.props.isSubscribing, userId: this.props.userId };
    console.log(this.state);
    this.handleChange = this.handleChange.bind(this);
    this.handleSubmit = this.handleSubmit.bind(this);
@@ -17,42 +17,50 @@ export default class StartPage extends React.Component {
    );
  };
  
- handleSubmit = (isSubscribing, userId) => {
+ handleSubmit = (event) => {
+  event.preventDefault();
    console.log("Vill ändra prenumerationen");
-   console.log(userId);
-   console.log(isSubscribing);
+   const { userId, isSubscribing } = this.state;
+   console.log(userId, isSubscribing);
  
-   var data = { "isSubscribing": isSubscribing, "id": userId };
- 
+   //var data = { "isSubscribing": isSubscribing, "userId": userId };
    fetch("http://localhost:3000/users/" + userId, {
-     method: "PUT",
-     headers: {
-       "Content-type": "application/json",
-     },
-     body: JSON.stringify(data),
-   })
-     .then((response) => response.json())
-     .then((response) => {
-       console.log(response);
-       if (response != null) {
-         this.props.sendUserStatus(
-           response.id,
-           response.isSubscribing,
-           console.log(response)
-         );
-         alert("update was successful");
-       } else alert("update was unsuccessful");
-     })
+    method: "PUT",
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify({ "isSubscribing": isSubscribing, "userId": userId }),
+  })
      .catch((err) => {
        console.log(err);
      });
  };
+   //  fetch("http://localhost:3000/users/" + userId, {
+  //    method: "PUT",
+  //    headers: {
+  //      "Content-type": "application/json",
+  //    },
+  //    body: JSON.stringify(data),
+  //  })
+    //  .then((response) => response.json())
+    //  .then((response) => {
+    //    console.log(response);
+    //    if (response != null) {
+    //      this.props.sendUserStatus(
+    //        response.userId,
+    //        response.isSubscribing,
+    //        console.log(response)
+    //      );
+    //      alert("update was successful");
+    //    } else alert("update was unsuccessful");
+    //  })
  
  changeisSubscribingstatus = () => {
    console.log("prenumererar inte");
  };
  
  render() {
+   console.log("props till startpage", this.state.userId, this.state.isSubscribing)
    return (
      <div className="Loginbox">
        <form onSubmit={this.handleSubmit}>
@@ -64,6 +72,7 @@ export default class StartPage extends React.Component {
              onChange={this.handleChange}
            />
            <br />
+           <input type="submit" value="Avsluta prenumeration" />
          </label>
        </form>
      </div>

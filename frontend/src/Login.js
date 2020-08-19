@@ -32,9 +32,9 @@ export default class Login extends React.Component {
      .then((response) => response.json())
      .then((data) => {
        if (data) {
-         console.log(data);
+         console.log("svar till login", data);
          this.setState({ isLoggedIn: true });
-         this.props.isLoggedIn(data.userId, data.isSubscriber);
+         this.props.isLoggedIn(data.userId, data.isSubscribing);
          console.log(this.state);
        }
      })

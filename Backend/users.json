@@ -4,14 +4,14 @@
     "userName": "Allan All",
     "userEmail": "allan@email.se",
     "userPassword": "1111",
-    "isSubscribing": true
+    "isSubscribing": false
   },
   {
     "userId": 2,
     "userName": "Bettan Bett",
     "userEmail": "bettan@email.se",
     "userPassword": "2222",
-    "isSubscribing": true
+    "isSubscribing": false
   },
   {
     "userId": 3,
