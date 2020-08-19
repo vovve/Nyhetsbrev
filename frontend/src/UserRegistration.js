@@ -39,7 +39,7 @@ export default class UserRegistration extends React.Component {
      .then((data) => {
        if (data) {
          console.log(data);
-         localStorage.setItem(data);
+         localStorage.setItem(userName, userPassword);
          console.log(localStorage);
          this.setState({ isLoggedIn: true });
          this.props.isLoggedIn(data.id);

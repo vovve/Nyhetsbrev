@@ -13,7 +13,7 @@ export default class StartPage extends React.Component {
  handleChange = (event) => {
    event.preventDefault();
    this.setState({ isSubscribing: (this.state.isSubscribing ? false : true)},() =>
-   this.props.changeisSubscribingstatus(this.state.isSubscribing)
+   this.changeisSubscribingstatus(this.state.isSubscribing)
    );
  };
  
@@ -49,7 +49,7 @@ export default class StartPage extends React.Component {
  };
  
  changeisSubscribingstatus = () => {
-   console.log("prenumererar");
+   console.log("prenumererar inte");
  };
  
  render() {

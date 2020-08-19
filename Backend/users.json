@@ -12,5 +12,19 @@
     "userEmail": "bettan@email.se",
     "userPassword": "2222",
     "isSubscribing": true
+  },
+  {
+    "userId": 3,
+    "userName": "Calle Call",
+    "userEmail": "calle@email.se",
+    "userPassword": "3333",
+    "isSubscribing": true
+  },
+  {
+    "userId": 4,
+    "userName": "Danne Dann",
+    "userEmail": "danne@email.se",
+    "userPassword": "4444",
+    "isSubscribing": true
   }
 ]
