@@ -22,8 +22,7 @@ export default class StartPage extends React.Component {
    console.log("Vill ändra prenumerationen");
    const { userId, isSubscribing } = this.state;
    console.log(userId, isSubscribing);
- 
-   //var data = { "isSubscribing": isSubscribing, "userId": userId };
+
    fetch("http://localhost:3000/users/" + userId, {
     method: "PUT",
     headers: {
@@ -35,25 +34,6 @@ export default class StartPage extends React.Component {
        console.log(err);
      });
  };
-   //  fetch("http://localhost:3000/users/" + userId, {
-  //    method: "PUT",
-  //    headers: {
-  //      "Content-type": "application/json",
-  //    },
-  //    body: JSON.stringify(data),
-  //  })
-    //  .then((response) => response.json())
-    //  .then((response) => {
-    //    console.log(response);
-    //    if (response != null) {
-    //      this.props.sendUserStatus(
-    //        response.userId,
-    //        response.isSubscribing,
-    //        console.log(response)
-    //      );
-    //      alert("update was successful");
-    //    } else alert("update was unsuccessful");
-    //  })
  
  changeisSubscribingstatus = () => {
    console.log("prenumererar inte");

@@ -21,7 +21,6 @@ router.post("/", function (req, res, next) {
             userName: user.userName,
             email: user.email,
             isSubscribing: user.isSubscribing
-            // wantsNewsletter: user.wantsNewsletter
           });
       }
     });

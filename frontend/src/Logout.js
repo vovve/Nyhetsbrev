@@ -6,21 +6,16 @@ export default class Logout extends React.Component {
      this.handleSubmit = this.handleSubmit.bind(this);
    }
  
-   handleSubmit = (event) => {
-       event.preventDefault();
-       console.log("loggar ut")
-       //this.props.isLoggedOut
+   handleSubmit = () => {
+       this.props.isLoggedOut();
    }
  
    render(){
        return(
            <div>
-               <form onSubmit={this.handleSubmit}>
+               <form>
                    <label>
-                       <input
-                       type="submit"
-                       value="Logga ut"
-                       />
+                       <button onClick={this.handleSubmit}>Logga ut</button>
                    </label>
                </form>
            </div>

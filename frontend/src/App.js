@@ -8,7 +8,6 @@ import Logout from "./Logout";
 export default class App extends React.Component {
  constructor(props) {
    super(props);
-   //const user = localStorage.getItem("user");
    this.state = {
      userId: null,
      isSubscribing: null,
