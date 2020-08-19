@@ -3,7 +3,6 @@ import Login from "./Login";
 import UserRegistration from "./UserRegistration";
 import StartPage from "./StartPage";
 import "./App.css";
-import Endpage from "./Endpage";
 import Logout from "./Logout";
  
 export default class App extends React.Component {

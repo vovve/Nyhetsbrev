@@ -1,67 +1,16 @@
 [
   {
-    "Id": 1,
+    "userId": 1,
     "userName": "Allan All",
     "userEmail": "allan@email.se",
     "userPassword": "1111",
     "isSubscribing": true
   },
   {
-    "Id": 2,
+    "userId": 2,
     "userName": "Bettan Bett",
     "userEmail": "bettan@email.se",
     "userPassword": "2222",
     "isSubscribing": true
-  },
-  {
-    "Id": 3,
-    "userName": "Calle Call",
-    "userEmail": "calle@email.se",
-    "userPassword": "3333",
-    "isSubscribing": true
-  },
-  {
-    "Id": 4,
-    "userName": "Danne Dann",
-    "userEmail": "danne@email.se",
-    "userPassword": "4444",
-    "isSubscribing": true
-  },
-  {
-    "Id": 5,
-    "userName": "Emma Emm",
-    "userEmail": "emma@email.se",
-    "userPassword": "5555",
-    "isSubscribing": false
-  },
-  {
-    "id": 6,
-    "userName": "Fabbe Fabb",
-    "userEmail": "fabbe@email.se",
-    "userPassword": "6666"
-  },
-  {
-    "id": 7,
-    "userName": "Gunnar Gunn",
-    "userEmail": "gunnar@email.se",
-    "userPassword": "7777"
-  },
-  {
-    "id": 8,
-    "userName": "Helen Hel",
-    "userEmail": "helen@email.se",
-    "userPassword": "8888"
-  },
-  {
-    "id": 9,
-    "userName": "Inga Ing",
-    "userEmail": "Inga@email.se",
-    "userPassword": "9999"
-  },
-  {
-    "id": 10,
-    "userName": "Janne Jann",
-    "userEmail": "janne@email.se",
-    "userPassword": "1010"
   }
 ]
